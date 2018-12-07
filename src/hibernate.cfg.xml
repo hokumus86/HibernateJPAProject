@@ -50,9 +50,6 @@ Contributor(s):
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>    
     
-    <mapping  class="dersane.hokumus.model.kitap"/>
-    <mapping  class="dersane.hokumus.model.uyeler"/>
-    <mapping  class="dersane.hokumus.model.yazar"/>
-    <mapping  class="dersane.hokumus.model.logtbl"/>
+    <mapping  class="dersane.hokumus.model.kullanici.Kullanici"/>
   </session-factory>
 </hibernate-configuration>
