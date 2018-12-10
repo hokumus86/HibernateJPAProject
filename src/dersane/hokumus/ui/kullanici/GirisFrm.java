@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import dersane.hokumus.dao.KullaniciDAO;
 import dersane.hokumus.model.kullanici.Kullanici;
 import dersane.hokumus.model.kullanici.Rol;
+import dersane.hokumus.ui.main.AnaFrm;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,8 +23,8 @@ public class GirisFrm extends JFrame {
 	KullaniciDAO db = new KullaniciDAO();
 
 	public GirisFrm() {
-		setBounds(300, 300, 340, 240);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setBounds(300, 300, 355, 255);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setTitle("Dersane Uygulamasý Giriþ Ekraný");
 
@@ -39,11 +40,13 @@ public class GirisFrm extends JFrame {
 		txtKulAdi.setBounds(142, 88, 142, 20);
 		getContentPane().add(txtKulAdi);
 		txtKulAdi.setColumns(10);
+		txtKulAdi.setText("hokumus");
 
 		txtSifre = new JTextField();
 		txtSifre.setBounds(142, 113, 142, 20);
 		getContentPane().add(txtSifre);
 		txtSifre.setColumns(10);
+		txtSifre.setText("1");
 
 		JButton btnIptal = new JButton("\u0130ptal");
 		btnIptal.addActionListener(new ActionListener() {
@@ -60,7 +63,6 @@ public class GirisFrm extends JFrame {
 
 		btnGiri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				List<Kullanici> liste = db.listele(new Kullanici());
 				if (liste.size() <= 0) {
 					kullaniciEkle(liste);
@@ -69,8 +71,9 @@ public class GirisFrm extends JFrame {
 				for (Kullanici k : liste) {
 					if (k.getKullaniciAdi().equals(txtKulAdi.getText())
 							&& k.getSifre().equals(txtSifre.getText())) {
-						JOptionPane.showMessageDialog(GirisFrm.this,
-								"Giriþ Baþarýlý...!");
+						AnaFrm frm = new AnaFrm();
+						frm.setVisible(true);
+						GirisFrm.this.dispose();
 					} else {
 						JOptionPane.showMessageDialog(GirisFrm.this,
 								"Giriþ Baþarýsýz...!");
@@ -83,8 +86,7 @@ public class GirisFrm extends JFrame {
 		});
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(
-				"C:\\Users\\vektorel\\Desktop\\logo.png"));
+		lblNewLabel.setIcon(new ImageIcon(GirisFrm.class.getResource("/images/logo.png")));
 		lblNewLabel.setBounds(67, 11, 242, 74);
 		getContentPane().add(lblNewLabel);
 	}
