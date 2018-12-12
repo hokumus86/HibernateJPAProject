@@ -74,6 +74,7 @@ public class GirisFrm extends JFrame {
 						AnaFrm frm = new AnaFrm();
 						frm.setVisible(true);
 						GirisFrm.this.dispose();
+						break;
 					} else {
 						JOptionPane.showMessageDialog(GirisFrm.this,
 								"Giriþ Baþarýsýz...!");
