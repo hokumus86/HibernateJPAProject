@@ -51,5 +51,7 @@ Contributor(s):
     <property name="hibernate.show_sql">true</property>    
     
     <mapping  class="dersane.hokumus.model.kullanici.Kullanici"/>
+    <mapping  class="dersane.hokumus.yonetici.model.Sinif"/>
+    <mapping  class="dersane.hokumus.yonetici.model.Grup"/>
   </session-factory>
 </hibernate-configuration>

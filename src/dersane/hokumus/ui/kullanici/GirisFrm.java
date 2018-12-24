@@ -11,6 +11,7 @@ import dersane.hokumus.dao.KullaniciDAO;
 import dersane.hokumus.model.kullanici.Kullanici;
 import dersane.hokumus.model.kullanici.Rol;
 import dersane.hokumus.ui.main.AnaFrm;
+import dersane.hokumus.util.DersanUtil;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -68,18 +69,19 @@ public class GirisFrm extends JFrame {
 					kullaniciEkle(liste);
 					liste = db.listele(new Kullanici());
 				}
+				boolean durum = false;
 				for (Kullanici k : liste) {
-					if (k.getKullaniciAdi().equals(txtKulAdi.getText())
-							&& k.getSifre().equals(txtSifre.getText())) {
+					if (k.getKullaniciAdi().equals(txtKulAdi.getText()) && k.getSifre().equals(txtSifre.getText())) {
+						DersanUtil.kullaniciRol = k.getRol();
 						AnaFrm frm = new AnaFrm();
 						frm.setVisible(true);
 						GirisFrm.this.dispose();
+						durum = true;
 						break;
-					} else {
-						JOptionPane.showMessageDialog(GirisFrm.this,
-								"Giriþ Baþarýsýz...!");
 					}
-
+				}
+				if (!durum) {
+					JOptionPane.showMessageDialog(GirisFrm.this, "Giriþ Baþarýsýz...!");
 				}
 
 			}
@@ -89,6 +91,7 @@ public class GirisFrm extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(GirisFrm.class.getResource("/images/logo.png")));
 		lblNewLabel.setBounds(67, 11, 242, 74);
+
 		getContentPane().add(lblNewLabel);
 	}
 

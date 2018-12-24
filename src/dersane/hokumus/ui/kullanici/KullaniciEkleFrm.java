@@ -18,15 +18,16 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import com.toedter.calendar.JDateChooser;
 
 public class KullaniciEkleFrm extends JFrame{
 	private JTextField txtKulAdi;
 	private JTextField txtEmail;
-	private JTextField txtUtarih;
 	private JTextField txtAdi;
 	private JTextField txtSoyadi;
 	private JPasswordField txtSifre;
 	private JComboBox cmbRol;
+	private JDateChooser dateUyelikTarihi;
 	
 	public KullaniciEkleFrm() {
 		initialize();
@@ -62,11 +63,6 @@ public class KullaniciEkleFrm extends JFrame{
 		JLabel lblyelikTarihi = new JLabel("\u00DCyelik Tarihi");
 		lblyelikTarihi.setBounds(282, 78, 67, 14);
 		getContentPane().add(lblyelikTarihi);
-		
-		txtUtarih = new JTextField();
-		txtUtarih.setColumns(10);
-		txtUtarih.setBounds(359, 75, 130, 20);
-		getContentPane().add(txtUtarih);
 		
 		JLabel lblAd = new JLabel("Ad\u0131");
 		lblAd.setBounds(23, 128, 67, 14);
@@ -117,6 +113,10 @@ public class KullaniciEkleFrm extends JFrame{
 		txtSifre = new JPasswordField();
 		txtSifre.setBounds(358, 21, 131, 20);
 		getContentPane().add(txtSifre);
+		
+		dateUyelikTarihi = new JDateChooser();
+		dateUyelikTarihi.setBounds(359, 75, 130, 20);
+		getContentPane().add(dateUyelikTarihi);
 		setTitle("Kullanýcý Ekleme");
 		
 	}
@@ -134,7 +134,7 @@ public class KullaniciEkleFrm extends JFrame{
 		temp.setEmail(txtEmail.getText());
 		temp.setKullaniciAdi(txtKulAdi.getText());
 		temp.setSifre(txtSifre.getText());
-		temp.setUyelikTarihi(new Date());
+		temp.setUyelikTarihi(dateUyelikTarihi.getDate());
 		temp.setSoyad(txtSoyadi.getText());
 		if(db.kaydet(temp))
 			JOptionPane.showMessageDialog(KullaniciEkleFrm.this, "Kullanýcý Baþarýyla Eklendi...!");
